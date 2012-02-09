@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>CC31A Tarea 3 </title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</head>
+<BODY BACKGROUND="icons/fondo5.jpg">
+<br>
+<center>
+<h1>Tarea 3 CC31A</h1>
+<br>
+<h2>Plazo: 2 semanas</h2>
+
+<img src="icons/linea.jpg">
+</center>
+
+<h2>Descripción</h2>
+<p>
+Hacer un programa en C que mueva un gusano en una ventana <i>wish</i>,
+como un juego tipo <i>snake</i> siguiendo las instrucciones de un programa.
+El gusano debe moverse solo (cada 0.1 segundo), siguiendo las instrucciones
+dadas por un archivo de instrucciones.
+Además, se les agrega unas galletas en la pantalla que deben irse comiendo
+y que hacen que el gusano crezca. Cuando el gusano choca consigo mismo o con
+un borde, el programa debe morir.
+
+<p>
+Se debe usar la tarea2 de modo de re-utilizar lo hecho hasta ahora en la
+programación del gusano. Le agregamos las instrucciones siguientes:
+<pre>
+(and exp1 exp2 ...)   que retorna verdadero si todas son verdaderas
+(or  exp1 exp2 ...)   que retorna verdadero si alguna es verdadera
+</pre>
+
+<p>
+También se agregan las "variables" que sirven para usar valores que el
+gusano tiene en su posición actual:
+<pre>
+d == direccion actual (0: arriba, 1: derecha, 2: abajo, 3: izquierda)
+m == distancia al muro  en x (<0 => izq)
+n == distancia al muro  en y (<0 => abajo)
+c == distancia a cookie en x
+e == distancia a cookie en y
+</pre>
+
+<p>
+El ejecutable gusano recibe un nombre de archivo de argumento que contiene
+las instrucciones del gusano. Este archivo debe abrirse, asignarlo a la 
+entrada estándar y usar los programas de evaluación de expresiones de la 
+tarea 2, modificados para incluir las nuevas operaciones.
+
+<p>
+El gusano se les da implementado en una versión que se mueve en función de la
+dirección que se le da en la entrada estándar: h es a la izquierda, j abajo, k
+arriba y l a la derecha.
+
+<p>
+Cuando el gusano muere, se libera la memoria y se borra.
+
+<p>
+El programa que ustedes hacen debe escribir en su salida estándar los
+comandos para wish (es texto simple), quien abre una ventana gráfica y
+dibuja lo que ustedes le piden en ella.
+
+<h2>Wish</h2>
+<p>
+Se le provee del archivo <a href="wish.h">wish.h</a> y su implementación
+<a href="wish.c">wish.c</a>.
+<p>
+<h2>Gusano</h2>
+<p>
+Para que vean la salida exacta a implementar por su programa, se les
+provee un .tgz con todo lo anterior, un
+ejecutable linux/i386 y un Makefile en <a href="tarea3.tgz">tarea3.tgz</a>.
+
+<p>
+Luego de extraer todos los archivos, deben ejecutar el programa como:
+<pre>
+% ./gusano programa | wish
+</pre>
+También pueden ejecutar la tarea directamente y mirar la salida estándar
+que es simplemente texto. El Makefile genera un gusano_orig a partir
+del código de gusano_orig.c que es la base
+para que ustedes lo modifiquen. Incluye una lista simple enlazada (LISTAS) 
+para la implementación. 
+
+<p>
+El archivo <a href="gus_prog">gus_prog</a> tiene un
+ejemplo de programa simple de control "inteligente" del gusano que esta
+tarea debe saber interpretar.
+
+<br>
+<h2>Condiciones de Entrega</h2>
+<p>
+La tarea debe entregarse antes del plazo final a través de U-cursos
+y debe compilar sin errores y 
+ejecutar, o no será evaluada. Si tienen una tarea que funciona en parte, pero
+no completa, entréguenla a tiempo y obtendrán algo de nota.
+
+<p>
+Entreguen un tgz completo de todo lo necesario para compilar su tarea, sin
+incluir wish.c, wish.h, listas.c, listas.h ni gusano_orig.c que no deben 
+modificarse.
+<br>
+<br>
+</html>

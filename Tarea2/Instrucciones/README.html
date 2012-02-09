@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>CC31A Tarea 2 </title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html";charset=ISO-8859-1">
+</head>
+<BODY BACKGROUND="icons/fondo5.jpg">
+<br>
+<center>
+<h1>Tarea 2 CC31A</h1>
+<br>
+<h2>Plazo: 2 semanas</h2>
+
+<img src="icons/linea.jpg">
+</center>
+
+<h2>Descripción</h2>
+<p>
+Modificar la tarea1 para que el árbol sea un árbol genérico cuyo campo
+val es ahora un void * y agréguenle una función:
+<pre>
+void map_tree(void (*func)(void *));
+</pre>
+
+que invoca la función que recibe de parámetro en todos los campos val
+de árbol.
+
+Luego deben modificar la función de evaluación para que maneje un árbol
+de expresión cuyo campo valor es un puntero a NODO:
+<pre>
+typedef enum {OPERADOR, CONSTANTE} TIPO;
+
+typedef struct {
+    TIPO type;
+    int val;
+    int (*funcion)(LISTA *);
+} NODO;
+</pre>
+
+La idea es que los operadores tienen la función que debe ser invocada en
+el campo funcion y las constantes en el campo valor.
+
+La función que se almacena recibe como argumento la lista de los
+subárboles del nodo y debe evaluarlos para luego operarlos.
+
+A modo de ejemplo esta es la función que se usa para sumar:
+<pre>
+/* Operadores:
+ * Reciben lista de sub-arboles a evaluar y luego operar
+ */
+int plus(LISTA *l) {
+    int res;
+    TREE *child;
+
+    if(l == NULL) return 0;
+
+    res = 0;
+    for(child = first_l(l); child != NULL; child = next_l(l))
+	res += eval_tree(child);
+
+    return res;
+}
+</pre>
+
+<p>
+La interfaz a implementar para TREE (arbol.h) es ahora
+<pre>
+/* Crea un árbol con val en la raíz y con esa lista de hijos */
+TREE *make_tree(void *val, LISTA *hijos);
+
+/* Obtiene el campo valor de la raíz del árbol */
+void *getval_tree(TREE *t);
+
+/* Obtiene la lista de hijos de la raíz del árbol */
+LISTA *getchild_tree(TREE *t);
+
+/* Libera todo el árbol */
+void free_tree(TREE *t);
+
+/* Aplica una funcion a todos los elementos del árbol */
+void map_tree(void (*func)(void *), TREE *t);
+</pre>
+
+Deben definir el tipo TREE
+e implementar todas estas funciones.
+<br>
+<h2>Evaluación de Expresiones</h2>
+<p>
+El programa eval.c de la tarea1 ahora deben modificarlo para
+evaluar una expresión simple de prefijo usando la nueva interfaz
+de árbol con valores de tipo *NODO. La expresión solo
+soporta valores de un carácter, o sea valores de 0 a 9, y los operadores
+antiguos +, -, * y /. Deben saltarse los blancos, los fines de linea y
+los tabs (\t) en la entrada.
+
+Agregamos los operadores siguientes que también deben incorporar (usamos
+la misma convención de C: 0 == FALSE, !0 == TRUE):
+<pre>
+(> val1 val2 ...) 
+</pre>
+retorna 0 (falso) cuando los valores no están ordenados de mayor a menor
+en forma estricta (no pueden ser iguales).
+
+<pre>
+(= val1 val2 ...)
+</pre>
+retorna 1 (verdadero) cuando son todos iguales.
+
+<pre>
+(~ val1)
+</pre>  
+retorna "not val1": 0 si val1 es distinto de cero y != 0 si era cero.
+
+<pre>
+(? cond val1 val2 val3 ...)
+</pre>
+
+Es como un <i>if</i>:
+si la evaluacion de cond arroja verdadero, retorno la evaluación de val1.
+Si cond era falso, evaluamos val2, val3, etc y retornamos el resultado
+del último valor. Como siempre, no debemos evaluar val1 si cond es
+falso y tampoco los otros si cond es verdadero. 
+
+<p>
+La salida que debieran obtener para algunas expresiones está
+en el archivo <a href="outlista.txt">outlista.txt</a> para que la comparen.
+<br>
+<h2>Condiciones de Entrega</h2>
+<p>
+La tarea debe entregarse antes del plazo final a través de U-cursos
+y debe compilar sin errores y 
+ejecutar, o no será evaluada. Si tienen una tarea que funciona en parte, pero
+no completa, entréguenla a tiempo y obtendrán algo de nota.
+<br>
+<br>
+</html>

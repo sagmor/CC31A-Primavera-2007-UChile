@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>CC31A Tarea 4 </title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</head>
+<BODY BACKGROUND="icons/fondo5.jpg">
+<br>
+<center>
+<h1>Tarea 4 CC31A</h1>
+<br>
+<h2>Plazo: 1 semana</h2>
+
+<img src="icons/linea.jpg">
+</center>
+
+<h2>Descripción</h2>
+<p>
+Hacer un programa en C que mueva un gusano en una ventana <i>wish</i>,
+como un juego tipo <i>snake</i> siguiendo las instrucciones de un programa.
+El gusano debe moverse solo (cada 0.1 segundo), siguiendo las instrucciones
+dadas por un archivo de instrucciones.
+Además, se les agrega unas galletas en la pantalla que deben irse comiendo
+y que hacen que el gusano crezca. Cuando el gusano choca consigo mismo o con
+un borde, el programa debe morir.
+
+<p>
+Se debe usar la tarea3 de modo de re-utilizar lo hecho hasta ahora en la
+programación del gusano. Le agregamos las funcionalidades siguientes:
+
+<p>
+El wish y su pipe son creados desde el programa, por lo que solo se
+ejecuta como ./gusano y aparece la ventana wish
+
+<p>
+El programa debe soportar un ctrl-c sin morir, lo que suspende su ejecución
+hasta un próximo ctrl-c que lo reanuda. Hay que proteger a wish antes de 
+crearlo para que ignore ctrl-c.
+
+<p>
+Cuando el gusano muere, se libera la memoria y se borra, sin dejar leaks.
+
+<p>
+Cuando se mata el wish, el gusano recibe un SIGPIPE y debe morir dignamente,
+también liberando toda la memoria antes de hacer exit().
+
+<h2>Gusano</h2>
+<p>
+Para que vean la salida exacta a implementar por su programa, se les
+provee un .tgz con todo lo anterior, un
+ejecutable linux/i386 y un Makefile en <a href="tarea4.tgz">tarea4.tgz</a>.
+
+<p>
+Luego de extraer todos los archivos, deben ejecutar el programa como:
+<pre>
+% ./gusano programa
+</pre>
+
+<p>
+El archivo <a href="gus_prog">gus_prog</a> tiene un
+ejemplo de programa simple de control "inteligente" del gusano que esta
+tarea debe saber interpretar.
+
+<br>
+<h2>Condiciones de Entrega</h2>
+<p>
+La tarea debe entregarse antes del plazo final a través de U-cursos
+y debe compilar sin errores y 
+ejecutar, o no será evaluada. Si tienen una tarea que funciona en parte, pero
+no completa, entréguenla a tiempo y obtendrán algo de nota.
+
+<p>
+Entreguen un tgz completo de todo lo necesario para compilar su tarea, sin
+necesidad de
+incluir wish.c, wish.h, listas.c, listas.h ni gusano_orig.c que no deben 
+modificarse.
+<br>
+<br>
+</html>

@@ -1,0 +1,20 @@
+############################## README ################################
+#                                                                    #
+# gusano - Tarea 6 - CC31A - 2007                                    #
+# Sebastián Gamboa Moyano                                            #
+#                                                                    #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#                                                                    #
+# Uso:                                                               #
+# $> ./gusano_s [-d] Nro_Clientes                                    #
+# $> ./gusano_c [-d] programa host puerto                            #
+#                                                                    #
+# flags:                                                             #
+#   * -d: Modo Debug (muestra comandos en pantalla)                  #
+#                                                                    #
+# programas incluidos:                                               #
+#   * gus_prog:    programa inteligente profesor                     #
+#   * die:         Gusano avanza hasta morir                         #
+#                                                                    #
+######################################################################
+

@@ -1,0 +1,24 @@
+# d == direccion actual (0: N, 1: E, 2: S, 3: W)
+# m == distancia al muro (0-9) en x (<0 => izq))
+# n == distancia al muro (0-9) en y (<0 => abajo))
+# c == distancia a cookie(0-9) en x)
+# e == distancia a cookie(0-9) en y)
+(? (| (= d 1) (= d 3))
+   (? (= m 0)  
+      (? (> 0 e)
+	 0
+	 2)
+      (? (= c 0) 
+         (? (> 0 e)
+            0
+            2)
+         d))
+   (? (= n 0)
+      (? (> 0 c)
+	 3
+	 1)
+      (? (= e 0)
+         (? (> 0 c)
+            3
+            1)
+         d)))

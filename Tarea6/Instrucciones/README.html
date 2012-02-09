@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>CC31A Tarea 6 </title>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html">
+</head>
+<BODY BACKGROUND="icons/fondo5.jpg">
+<br>
+<center>
+<h1>Tarea 6 CC31A</h1>
+<br>
+<h2>Plazo: 2 semanas</h2>
+
+<img src="icons/linea.jpg">
+</center>
+
+<h2>Descripción</h2>
+<p>
+Hacer un programa en C que mueva varios gusanos en varias ventanas <i>wish</i>,
+de clientes de red usando sockets. Es
+como un juego tipo <i>snake</i> siguiendo las instrucciones de un programa.
+Cada gusano debe moverse solo (cada 0.1 segundo), siguiendo las instrucciones
+dadas por un archivo de instrucciones y está implementado por un thread
+independiente, que ahora tiene múltiples displays wish en varios clientes.
+
+El servidor principal debe esperar la muerte de todos los gusanos para terminar.
+<p>
+Se debe usar la tarea5 de modo de re-utilizar lo hecho hasta ahora en la
+programación del gusano. Le agregamos las funcionalidades siguientes:
+
+<p>
+Ejecución:
+<pre>
+% ./gusano_s [-d] ngusanos
+</pre>
+que es el servidor: debe esperar a que ngusanos clientes se conecten con él 
+en el port 1818 y 
+se crea un thread por cada programa que ejecuta un gusano (máximo 7). Cada
+conexión comienza enviando un programa al servidor, de modo que cada thread
+debe leer un programa desde el socket para que el gusano
+ejecute
+siguiendo sus
+instrucciones.
+<p>
+Una vez que se conectaron todos los gusanos, cada thread espera su programa. 
+Para que comiencen todos al mismo tiempo, debemos sincronizar a los threads
+esperando a que todos hayan recibido su programa y estén listos para la
+competencia.
+Cuando todos los programas fueron recibidos, los threads comienzan su ejecución.
+El servidor ejecuta todo y envía los mismos comandos wish a todos los
+clientes en forma simultánea (todos deben recibir exactamente lo mismo).
+<p>
+Los colores de los gusanos son:
+<br>
+"red", "blue", "green", "black", "white", "yellow", "orange"
+<p>
+Se agrega una opción -d para que el servidor muestre 
+en su salida estándar todos los comandos enviados a los clientes,
+para hacer debugging.
+<p>
+Cuando todos los gusanos mueren, el servidor debe morir.
+<p>
+Cuando todos los clientes han muerto (hemos matado los wish, por ejemplo)
+el servidor debe detectarlo y morir. Pueden seguir ejecutando si se les
+dio la opción -d, porque tal vez no nos interesaban los wish.
+<pre>
+% ./gusano_c [-d] programa host port
+</pre>
+Es el cliente que se conecta con el servidor y le envía el programa
+contenido en el archivo especificado por el socket de conexión.
+Luego recibe desde el socket
+las secuencias para wish, por lo que todo lo que recibe lo envía a
+su wish con un pipe como siempre. La opción -d sirve para que muestre
+en la salida estándar una copia de lo enviado a su wish usando tee().
+<p>
+Un ctrl-C en el cliente debe detenerlo por un rato hasta un próximo ctrl-C
+que lo reanude. Esto solo afecta al cliente, por lo que al recuperarse 
+aparece la nueva pantalla de los gusanos y resulta casi imposible ver
+lo que ocurrió entre medio. Esto debe funcionar incluso con la opción
+-d habilitada.
+<p>
+Una muerte del wish debe matar al cliente y un EOF desde el servidor
+debe matar al cliente y a su wish.
+<p>
+Los clientes deben vivir hasta que se muera el último gusano, momento en que
+el servidor muere y automáticamente deben morir todos los clientes.
+<p>
+Por esta vez, pueden no preocuparse de valgrind.
+
+<h2>Gusano</h2>
+<p>
+Para que vean un ejemplo se les
+provee un .tgz con dos
+ejecutables linux/i386 (cliente y servidor) en <a href="tarea6.tgz">tarea6.tgz</a>. También se incluye libjsocket.c y jsocket.h por si quieren usarlos.
+
+El archivo <a href="gus_prog">gus_prog</a> tiene un
+ejemplo de programa simple de control "inteligente" del gusano que esta
+tarea debe saber interpretar.
+
+<br>
+<h2>Condiciones de Entrega</h2>
+<p>
+La tarea debe entregarse antes del plazo final a través de U-cursos
+y debe compilar sin errores y 
+ejecutar, o no será evaluada. Si tienen una tarea que funciona en parte, pero
+no completa, entréguenla a tiempo y obtendrán algo de nota.
+
+<p>
+Entreguen un tgz completo de todo lo necesario para compilar su tarea, tanto
+el cliente como el servidor.
+<br>
+<br>
+</html>
